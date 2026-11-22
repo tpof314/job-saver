@@ -1,0 +1,22 @@
+{
+  "manifest_version": 3,
+  "name": "Job Saver",
+  "version": "1.0.0",
+  "description": "Save the job descriptions from your open tabs into one JSON file.",
+  "minimum_chrome_version": "110",
+  "permissions": ["tabs", "scripting", "downloads", "storage"],
+  "host_permissions": ["<all_urls>"],
+  "background": {
+    "service_worker": "background.js"
+  },
+  "action": {
+    "default_title": "Save job descriptions from open tabs",
+    "default_popup": "popup.html"
+  },
+  "commands": {
+    "_execute_action": {
+      "suggested_key": { "default": "Alt+Shift+J" },
+      "description": "Open the Job Saver popup"
+    }
+  }
+}

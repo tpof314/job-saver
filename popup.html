@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Job Saver</title>
+    <style>
+      :root {
+        --bg: #ffffff;
+        --fg: #1d1d1f;
+        --muted: #6e6e73;
+        --line: #e5e5ea;
+        --accent: #0a66c2;
+        --accent-fg: #ffffff;
+        --ok: #1a7f37;
+        --warn: #9a6700;
+      }
+      @media (prefers-color-scheme: dark) {
+        :root {
+          --bg: #1c1c1e;
+          --fg: #f2f2f7;
+          --muted: #a1a1a6;
+          --line: #3a3a3c;
+          --accent: #4d9be6;
+          --accent-fg: #0b0b0c;
+          --ok: #4ac26b;
+          --warn: #d4a72c;
+        }
+      }
+      * { box-sizing: border-box; }
+      body {
+        margin: 0;
+        width: 320px;
+        padding: 16px;
+        font: 13px/1.45 system-ui, -apple-system, "Segoe UI", sans-serif;
+        background: var(--bg);
+        color: var(--fg);
+      }
+      h1 { font-size: 15px; margin: 0 0 2px; }
+      .sub { color: var(--muted); margin: 0 0 14px; }
+      button {
+        width: 100%;
+        padding: 10px;
+        border: 0;
+        border-radius: 8px;
+        background: var(--accent);
+        color: var(--accent-fg);
+        font: inherit;
+        font-weight: 600;
+        cursor: pointer;
+      }
+      button:disabled { opacity: 0.55; cursor: default; }
+      label { display: flex; gap: 8px; align-items: center; margin: 12px 0 0; color: var(--muted); }
+      #status { margin-top: 14px; min-height: 18px; }
+      #status.ok { color: var(--ok); }
+      #status.warn { color: var(--warn); }
+      .file { word-break: break-all; color: var(--muted); font-size: 12px; }
+      details { margin-top: 10px; border-top: 1px solid var(--line); padding-top: 8px; }
+      summary { cursor: pointer; color: var(--muted); }
+      ul { margin: 6px 0 0; padding-left: 16px; max-height: 180px; overflow: auto; }
+      li { margin-bottom: 4px; }
+      li span { color: var(--muted); }
+    </style>
+  </head>
+  <body>
+    <h1>Job Saver</h1>
+    <p class="sub" id="tabcount">Reads the tabs you already have open.</p>
+
+    <button id="save">Save all tabs in this window</button>
+    <label><input type="checkbox" id="jobsOnly" checked /> Only save pages that look like jobs</label>
+
+    <div id="status" role="status"></div>
+    <div id="file" class="file"></div>
+    <details id="skippedBox" hidden>
+      <summary id="skippedTitle">Skipped</summary>
+      <ul id="skippedList"></ul>
+    </details>
+
+    <script src="popup.js"></script>
+  </body>
+</html>
